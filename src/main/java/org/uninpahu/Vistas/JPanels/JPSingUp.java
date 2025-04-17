@@ -11,16 +11,10 @@ import org.uninpahu.Modelo.Person;
 import org.uninpahu.Modelo.Rol;
 import org.uninpahu.Modelo.User;
 import org.uninpahu.Vistas.JFrames.JFIndex;
-import org.uninpahu.Repository.RepositoryRol;
-import org.uninpahu.Services.ServicesRol;
 
-/**
- *
- * @author pipejfdv
- */
 public class JPSingUp extends javax.swing.JPanel {
     
-    private JFIndex jFIndex;
+    private final JFIndex jFIndex;
     private boolean rolActive = false;
     ControlerUser controlerUser = new ControlerUser();
     ControlerPerson controlerPerson = new ControlerPerson();
@@ -47,7 +41,6 @@ public class JPSingUp extends javax.swing.JPanel {
     }
     
     private void newRegistry(){
-
         String id = UUID.randomUUID().toString();
         Person newPerson = new Person(id, jTnames.getText(), jTlastnames.getText(), jTemail.getText());
         controlerPerson.insertPerson(newPerson);
@@ -425,9 +418,6 @@ public class JPSingUp extends javax.swing.JPanel {
     private void ToggleConfirmArtisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToggleConfirmArtisActionPerformed
         if(ToggleConfirmArtis.isSelected()){
             rolActive = true;
-        }
-        else{
-            rolActive = false;
         }
     }//GEN-LAST:event_ToggleConfirmArtisActionPerformed
 
