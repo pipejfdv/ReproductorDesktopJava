@@ -58,7 +58,7 @@ public class UserDAO implements RepositoryUser{
     @Override
     public User searhByNickname(String nickname) {
         Connection conex = DataBase.getConnection();
-        String sql = "select u.idUser, u.nickname, r.idRol, r.nameRol as roleName, p.idPerson, p.names as personName, p.lastnames, p.email "
+        String sql = "select u.idUser, u.nickname, u.passwordUser, r.idRol, r.nameRol as roleName, p.idPerson, p.names as personName, p.lastnames, p.email "
                 + "from Users u inner join Roles r on u.idRolUser = r.idRol inner join Persons p on u.idPersonUser = p.idPerson where u.nickname = ?";
         User user = null;
         
@@ -71,6 +71,7 @@ public class UserDAO implements RepositoryUser{
                 user = new User(
                         rs.getString("idUser"),
                         rs.getString("nickname"),
+                        rs.getString("passwordUser"),
                         rol,
                         person
                 );

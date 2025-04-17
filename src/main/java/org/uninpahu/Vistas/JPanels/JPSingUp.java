@@ -20,6 +20,7 @@ public class JPSingUp extends javax.swing.JPanel {
     ControlerPerson controlerPerson = new ControlerPerson();
     ControlerRol controlerRol = new ControlerRol();
     
+    
     public JPSingUp(JFIndex index) {
         initComponents();
         this.jFIndex = index;
@@ -29,6 +30,12 @@ public class JPSingUp extends javax.swing.JPanel {
         jFIndex.addPlaceHolderStyle(jTnickname);
         jFIndex.addPlaceHolderStyle(jPassword);
         jFIndex.addPlaceHolderStyle(jPasswordConfirm);
+    }
+    
+    public void returnLogin(){
+        JPIndexAuth index = new JPIndexAuth(this.jFIndex);
+        JFIndex changePanel = (JFIndex) SwingUtilities.getWindowAncestor(this);
+        changePanel.changeContent(index);
     }
     
     private Rol assignRol(boolean rolActive){
@@ -403,15 +410,14 @@ public class JPSingUp extends javax.swing.JPanel {
     }//GEN-LAST:event_jTnicknameFocusLost
 
     private void jBcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelActionPerformed
-        JPIndexAuth index = new JPIndexAuth(this.jFIndex);
-        JFIndex changePanel = (JFIndex) SwingUtilities.getWindowAncestor(this);
-        changePanel.changeContent(index);
+        returnLogin();
     }//GEN-LAST:event_jBcancelActionPerformed
 
     private void jBregistryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBregistryActionPerformed
         if(confirmData() && duplicateData(jTemail.getText(), jTnickname.getText())){
             newRegistry();
             JOptionPane.showMessageDialog(null, "Registry succesfull");
+            returnLogin();
         }
     }//GEN-LAST:event_jBregistryActionPerformed
 

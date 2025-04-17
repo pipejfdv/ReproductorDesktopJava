@@ -1,16 +1,19 @@
-
 package org.uninpahu.Vistas.JPanels;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Optional;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import org.uninpahu.Controlers.ControlerUser;
+import org.uninpahu.Modelo.User;
 import org.uninpahu.Vistas.JFrames.JFIndex;
-
 
 public class JPIndexAuth extends javax.swing.JPanel {
 
-    private JFIndex index;
-    
+    private final JFIndex index;
+    ControlerUser controlerUser = new ControlerUser();
+
     public JPIndexAuth(JFIndex index) {
         initComponents();
         this.index = index;
@@ -18,6 +21,17 @@ public class JPIndexAuth extends javax.swing.JPanel {
         index.addPlaceHolderStyle(jPassword);
     }
 
+    private Boolean loginAcces(String nickname, String password) {
+        Optional<User> userAuth = Optional.ofNullable(controlerUser.searchByNickname(nickname));
+        if (userAuth.isPresent()) {
+            User user = userAuth.get();
+            if (user.getNickname().equals(nickname) && user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Credentials are incorrect");
+        return false;
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -28,8 +42,8 @@ public class JPIndexAuth extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jTnickname = new javax.swing.JTextField();
         jPassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBAccess = new javax.swing.JButton();
+        jBRegistry = new javax.swing.JButton();
 
         backgroundImg.setIcon(new javax.swing.ImageIcon("/home/pipejfdv/Desktop/programs/SpotifyDesktop/src/main/java/org/uninpahu/Vistas/Images/backgroundIndex.jpg")); // NOI18N
 
@@ -60,18 +74,23 @@ public class JPIndexAuth extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login In");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Sign Up");
-        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBAccess.setBackground(new java.awt.Color(0, 102, 0));
+        jBAccess.setForeground(new java.awt.Color(255, 255, 255));
+        jBAccess.setText("Login In");
+        jBAccess.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jBAccess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBAccessActionPerformed(evt);
+            }
+        });
+
+        jBRegistry.setBackground(new java.awt.Color(0, 0, 0));
+        jBRegistry.setForeground(new java.awt.Color(255, 255, 255));
+        jBRegistry.setText("Sign Up");
+        jBRegistry.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jBRegistry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRegistryActionPerformed(evt);
             }
         });
 
@@ -88,9 +107,9 @@ public class JPIndexAuth extends javax.swing.JPanel {
                         .addGap(58, 58, 58))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBAccess, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBRegistry, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jPassword)
                         .addComponent(jTnickname, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -107,8 +126,8 @@ public class JPIndexAuth extends javax.swing.JPanel {
                 .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jBAccess)
+                    .addComponent(jBRegistry))
                 .addContainerGap(141, Short.MAX_VALUE))
         );
 
@@ -125,7 +144,7 @@ public class JPIndexAuth extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTnicknameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnicknameFocusGained
-        if(jTnickname.getText().equals("Nickname")){
+        if (jTnickname.getText().equals("Nickname")) {
             jTnickname.setText(null);
             jTnickname.requestFocus();
             index.removePlaceHolderStyle(jTnickname);
@@ -133,14 +152,14 @@ public class JPIndexAuth extends javax.swing.JPanel {
     }//GEN-LAST:event_jTnicknameFocusGained
 
     private void jTnicknameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnicknameFocusLost
-        if(jTnickname.getText().length()==0){
+        if (jTnickname.getText().length() == 0) {
             index.addPlaceHolderStyle(jTnickname);
             jTnickname.setText("Nickname");
         }
     }//GEN-LAST:event_jTnicknameFocusLost
 
     private void jPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFocusGained
-        if(jPassword.getText().equals("Password")){
+        if (jPassword.getText().equals("Password")) {
             jPassword.setText(null);
             jPassword.requestFocus();
             jPassword.setEchoChar('0');
@@ -149,23 +168,29 @@ public class JPIndexAuth extends javax.swing.JPanel {
     }//GEN-LAST:event_jPasswordFocusGained
 
     private void jPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFocusLost
-        if(jPassword.getText().length()==0){
+        if (jPassword.getText().length() == 0) {
             index.addPlaceHolderStyle(jPassword);
             jPassword.setText("Password");
             jPassword.setEchoChar('\u0000');
         }
     }//GEN-LAST:event_jPasswordFocusLost
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBRegistryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistryActionPerformed
         JPSingUp newRegistry = new JPSingUp(index);
         index.changeContent(newRegistry);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBRegistryActionPerformed
+
+    private void jBAccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAccessActionPerformed
+        if(loginAcces(jTnickname.getText(), jPassword.getText())){
+            JOptionPane.showMessageDialog(null, "ingresado");
+        }
+    }//GEN-LAST:event_jBAccessActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundImg;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBAccess;
+    private javax.swing.JButton jBRegistry;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPassword;
