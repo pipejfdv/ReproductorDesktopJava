@@ -17,4 +17,8 @@ public class ServicesSong {
     public Optional<List<Song>> listSong(){
         return repositorySong.listSongs();
     }
+    
+    public Song searchSong(String idSong, String nameSong){
+        return repositorySong.searchSong(idSong, nameSong);
+    }
 }

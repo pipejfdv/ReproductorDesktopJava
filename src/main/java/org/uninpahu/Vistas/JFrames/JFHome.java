@@ -5,7 +5,9 @@
 package org.uninpahu.Vistas.JFrames;
 
 import java.awt.BorderLayout;
+import javafx.embed.swing.JFXPanel;
 import org.uninpahu.Vistas.JPanels.JPPlaylist;
+
 
 /**
  *
@@ -18,6 +20,7 @@ public class JFHome extends javax.swing.JFrame {
      */
     public JFHome() {
         initComponents();
+        new JFXPanel();
         JPPlaylist playlistPanel = new JPPlaylist();
         playlistPanel.setSize(500, 411);
         playlistPanel.setLocation(0, 0);

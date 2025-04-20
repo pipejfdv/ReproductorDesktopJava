@@ -19,6 +19,9 @@ import org.uninpahu.Modelo.Song;
 
 public class SongDAO implements RepositorySong {
 
+    ControlerGender controlerGender = new ControlerGender();
+    ControlerAlbum controlerAlbum = new ControlerAlbum();
+    
     @Override
     public Optional<List<Song>> listSongs() {
         Connection conex = DataBase.getConnection();
@@ -27,8 +30,6 @@ public class SongDAO implements RepositorySong {
         try (PreparedStatement stmSongs = conex.prepareStatement(sql)) {
             ResultSet rs = stmSongs.executeQuery();
 
-            ControlerGender controlerGender = new ControlerGender();
-            ControlerAlbum controlerAlbum = new ControlerAlbum();
             //iterar varios datos
             while (rs.next()) {
                 Date creationDateDb = rs.getDate("creationSong");
@@ -65,5 +66,38 @@ public class SongDAO implements RepositorySong {
         return Duration.ofHours(localTime.getHour())
                 .plusMinutes(localTime.getMinute())
                 .plusSeconds(localTime.getSecond());
+    }
+
+    @Override
+    public Song searchSong(String idSong, String nameSong) {
+        Connection conex = DataBase.getConnection();
+        String sql = "SELECT * FROM Songs WHERE 1=1";
+        Song song = null;
+        if(idSong != null) sql += " AND idSong = ?";
+        if(nameSong != null) sql += " AND nameSong = ?";
+        
+        try(PreparedStatement stm = conex.prepareStatement(sql)){
+            int index = 1;
+            if(idSong != null) stm.setString(index++, idSong);
+            if(nameSong != null) stm.setString(index++, nameSong);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next()){
+                Date creationDateDb = rs.getDate("creationSong");
+                LocalDate creationDate = creationDateDb != null ? creationDateDb.toLocalDate() : null;
+                Duration duration = convertSqlTimeToDuration(rs.getTime("durationSong"));
+                song = new Song(
+                        rs.getString("idSong"),
+                        rs.getString("nameSong"),
+                        creationDate,
+                        duration,
+                        controlerGender.searchGender(rs.getString("idGender"), null),
+                        controlerAlbum.searchAlbum(rs.getString("idAlbum"), null),
+                        rs.getString("pathFile"));
+            }
+        }
+        catch(SQLException e){
+            System.err.println("Error search song "+e.getMessage());
+        }
+        return song;
     }
 }

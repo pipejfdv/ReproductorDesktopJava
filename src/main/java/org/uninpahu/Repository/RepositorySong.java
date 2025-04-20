@@ -7,7 +7,8 @@ import org.uninpahu.Modelo.Song;
 
 
 public interface RepositorySong {
-    //read all Song
+    //list all Song
     Optional<List<Song>> listSongs();
-            
+    //read Song
+    Song searchSong(String idSong, String nameSong);
 }

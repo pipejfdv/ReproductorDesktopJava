@@ -4,6 +4,7 @@ package org.uninpahu.Vistas.JPanels;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.table.DefaultTableModel;
+import org.uninpahu.ConfigPlayer.mediaPlayer;
 import org.uninpahu.Controlers.ControlerSong;
 import org.uninpahu.Modelo.Song;
 
@@ -126,7 +127,13 @@ public class JPPlaylist extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBPlaySongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlaySongActionPerformed
-        // TODO add your handling code here:
+        int row = jTablePlaylist.getSelectedRow();
+        if(row >= 0){
+            String selectedSong = jTablePlaylist.getValueAt(row, 0).toString();
+            Song song = controlerSong.searchSong(null, selectedSong);
+            System.out.println("info: " + song.getPathFile());
+            mediaPlayer.play(song.getPathFile());
+        }
     }//GEN-LAST:event_jBPlaySongActionPerformed
 
 

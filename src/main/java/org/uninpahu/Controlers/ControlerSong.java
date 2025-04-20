@@ -20,4 +20,8 @@ public class ControlerSong {
     public Optional<List<Song>> listSong(){
         return servicesSong.listSong();
     }
+    
+    public Song searchSong(String idSong, String nameSong){
+        return servicesSong.searchSong(idSong, nameSong);
+    }
 }
