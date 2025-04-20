@@ -1,11 +1,35 @@
 
 package org.uninpahu.Vistas.JPanels;
 
+import java.util.List;
+import java.util.Optional;
+import javax.swing.table.DefaultTableModel;
+import org.uninpahu.Controlers.ControlerSong;
+import org.uninpahu.Modelo.Song;
+
 public class JPPlaylist extends javax.swing.JPanel {
 
-
+    DefaultTableModel dtm = new DefaultTableModel();
+    ControlerSong controlerSong = new ControlerSong();
+    
     public JPPlaylist() {
         initComponents();
+        String[] tittle = new String[]{"Title", "Album", "Duration", "Gender"};
+        dtm.setColumnIdentifiers(tittle);
+        jTablePlaylist.setModel(dtm);
+        addDataTableSongs();
+    }
+    
+    private void addDataTableSongs(){
+        Optional<List<Song>> songslist = controlerSong.listSong();
+        songslist.ifPresent(songs -> {
+            songs.forEach(songIterator -> dtm.addRow(new Object[]{
+                songIterator.getNameSong(),
+                songIterator.getIdAlbum().getNameAlbum(),
+                songIterator.getDuration(),
+                songIterator.getIdGender().getNameGender()
+            }));
+        });
     }
 
     /**
@@ -20,6 +44,9 @@ public class JPPlaylist extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePlaylist = new javax.swing.JTable();
+        jBPlaySong = new javax.swing.JButton();
+        jBAddSong = new javax.swing.JButton();
+        jBComment = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(500, 411));
 
@@ -46,15 +73,44 @@ public class JPPlaylist extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTablePlaylist);
 
+        jBPlaySong.setIcon(new javax.swing.ImageIcon("/home/pipejfdv/Desktop/programs/SpotifyDesktop/src/main/java/org/uninpahu/Vistas/Images/botondeplay.png")); // NOI18N
+        jBPlaySong.setText("  Play");
+        jBPlaySong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPlaySongActionPerformed(evt);
+            }
+        });
+
+        jBAddSong.setIcon(new javax.swing.ImageIcon("/home/pipejfdv/Desktop/programs/SpotifyDesktop/src/main/java/org/uninpahu/Vistas/Images/anadir.png")); // NOI18N
+        jBAddSong.setText("  Add Song");
+
+        jBComment.setIcon(new javax.swing.ImageIcon("/home/pipejfdv/Desktop/programs/SpotifyDesktop/src/main/java/org/uninpahu/Vistas/Images/bueno.png")); // NOI18N
+        jBComment.setText("  Comment");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jBPlaySong)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBAddSong)
+                .addGap(54, 54, 54)
+                .addComponent(jBComment)
+                .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBPlaySong)
+                    .addComponent(jBAddSong)
+                    .addComponent(jBComment))
+                .addGap(0, 70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -69,8 +125,15 @@ public class JPPlaylist extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBPlaySongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlaySongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBPlaySongActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAddSong;
+    private javax.swing.JButton jBComment;
+    private javax.swing.JButton jBPlaySong;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePlaylist;

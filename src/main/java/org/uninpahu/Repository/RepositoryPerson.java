@@ -7,5 +7,5 @@ public interface RepositoryPerson {
     //add person
     void insertPerson(Person person);
     //searh by email
-    Person searhByEmail(String email);
+    Person searchByEmail(String email);
 }

@@ -16,6 +16,6 @@ public class ServicesPerson {
     }
     
     public Person searhByEmail (String email){
-        return repositoryPerson.searhByEmail(email);
+        return repositoryPerson.searchByEmail(email);
     }
 }

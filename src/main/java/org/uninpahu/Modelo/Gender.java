@@ -4,6 +4,11 @@ public class Gender {
     private String idGender;
     private String nameGender;
 
+    public Gender(String idGender, String nameGender) {
+        this.idGender = idGender;
+        this.nameGender = nameGender;
+    }
+
     public String getIdGender() {
         return idGender;
     }

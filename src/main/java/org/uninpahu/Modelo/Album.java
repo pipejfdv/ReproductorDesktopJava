@@ -11,15 +11,15 @@ public class Album {
 
     /*
     * Constructor para el objeto tipo Álbum musica
-    * @param idAlbum identificador único del album (no nulo)
-    * @param nameAlbum nombre del album creado (no nulo)
-    * @param createAlbum campo con formato "dd/mm/yyyy" (no nulo)
-    * @param gender hace referencia al objeto "Gender" (no nulo)
+    * @param idAlbum      identificador único del album (no nulo)
+    * @param nameAlbum    nombre del album creado (no nulo)
+    * @param createAlbum  campo con formato LocalDate (no nulo)
+    * @param gender hace  referencia al objeto "Gender" (no nulo)
     * */
-    public Album(String idAlbum, String nameAlbum, String creationAlbum, Gender idGender) {
+    public Album(String idAlbum, String nameAlbum, LocalDate creationAlbum, Gender idGender) {
         this.idAlbum = idAlbum;
         this.nameAlbum = nameAlbum;
-        this.createAlbum = LocalDate.parse(creationAlbum, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.createAlbum = creationAlbum;
         this.idGender = idGender;
     }
 

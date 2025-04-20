@@ -32,7 +32,7 @@ public class PersonDAO implements RepositoryPerson{
     }
     
     @Override
-    public Person searhByEmail(String email){
+    public Person searchByEmail(String email){
         Connection conex = DataBase.getConnection();
         String sql = "SELECT * FROM Persons WHERE email = ?";
         Person person = null;

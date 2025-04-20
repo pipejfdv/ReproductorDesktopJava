@@ -4,6 +4,9 @@
  */
 package org.uninpahu.Vistas.JFrames;
 
+import java.awt.BorderLayout;
+import org.uninpahu.Vistas.JPanels.JPPlaylist;
+
 /**
  *
  * @author pipejfdv
@@ -15,6 +18,14 @@ public class JFHome extends javax.swing.JFrame {
      */
     public JFHome() {
         initComponents();
+        JPPlaylist playlistPanel = new JPPlaylist();
+        playlistPanel.setSize(500, 411);
+        playlistPanel.setLocation(0, 0);
+        
+        jPanelContentHome.removeAll();
+        jPanelContentHome.add(playlistPanel, BorderLayout.CENTER);
+        jPanelContentHome.revalidate();
+        jPanelContentHome.repaint();
     }
 
     /**

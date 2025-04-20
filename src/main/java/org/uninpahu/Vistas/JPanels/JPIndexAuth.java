@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.uninpahu.Controlers.ControlerUser;
 import org.uninpahu.Modelo.User;
+import org.uninpahu.Vistas.JFrames.JFHome;
 import org.uninpahu.Vistas.JFrames.JFIndex;
 
 public class JPIndexAuth extends javax.swing.JPanel {
@@ -182,7 +183,11 @@ public class JPIndexAuth extends javax.swing.JPanel {
 
     private void jBAccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAccessActionPerformed
         if(loginAcces(jTnickname.getText(), jPassword.getText())){
-            JOptionPane.showMessageDialog(null, "ingresado");
+            JFHome home = new JFHome();
+            home.setVisible(true);
+            home.setLocationRelativeTo(null);
+            home.setResizable(false);
+            index.setVisible(false);
         }
     }//GEN-LAST:event_jBAccessActionPerformed
 
