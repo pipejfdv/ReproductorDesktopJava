@@ -4,6 +4,7 @@ package org.uninpahu.Vistas.JFrames;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import javafx.embed.swing.JFXPanel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import org.uninpahu.Vistas.JPanels.JPIndexAuth;

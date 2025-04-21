@@ -1,18 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.uninpahu.Vistas.JFrames;
 
 import java.awt.BorderLayout;
-import javafx.embed.swing.JFXPanel;
 import org.uninpahu.Vistas.JPanels.JPPlaylist;
+import javafx.embed.swing.JFXPanel;
 
-
-/**
- *
- * @author pipejfdv
- */
 public class JFHome extends javax.swing.JFrame {
 
     /**

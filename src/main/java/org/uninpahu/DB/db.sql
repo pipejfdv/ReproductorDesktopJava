@@ -155,10 +155,18 @@ INSERT INTO Albums (idAlbum, nameAlbum, creationAlbum, idGenderAlbum) VALUES
                                                                           ('2a9eebc9-9c0b-4ef8-bb6d-6bb9bd380a23', 'No Need to Argue', '1994-10-03', '550e8400-e29b-41d4-a716-446655440001'),
                                                                           ('3b0ffc99-9c0b-4ef8-bb6d-6bb9bd380a24', 'Mil Siluetas', '1984-06-01', '550e8400-e29b-41d4-a716-446655440010');
 -- Canciones
-INSERT INTO Songs (idSong, nameSong, creationSong, durationSong, idGender, idAlbum, pathFile) VALUES
-                                                                                                  ('4c1ddbc9-9c0b-4ef8-bb6d-6bb9bd380a25', 'Zombie', '1994-01-01', '00:05:06', '550e8400-e29b-41d4-a716-446655440001', '2a9eebc9-9c0b-4ef8-bb6d-6bb9bd380a23', 'src/main/java/org/uninpahu/Music/Zombie.mp3'),
-                                                                                                  ('5d2eebc9-9c0b-4ef8-bb6d-6bb9bd380a26', 'Who Loves the Sun', '1970-01-01', '00:02:38', '550e8400-e29b-41d4-a716-446655440012', NULL, 'src/main/java/org/uninpahu/Music/Who_loves_the_sun.mp3'),
-                                                                                                  ('6e3ffc99-9c0b-4ef8-bb6d-6bb9bd380a27', 'Hombre Lobo en París', '1984-01-01', '00:03:53', '550e8400-e29b-41d4-a716-446655440010', '3b0ffc99-9c0b-4ef8-bb6d-6bb9bd380a24', 'src/main/java/org/uninpahu/Music/Hombre_lobo.mp3');
+INSERT INTO Songs (idSong, nameSong, creationSong, durationSong, idGender, idAlbum, pathFile) 
+VALUES ('4c1ddbc9-9c0b-4ef8-bb6d-6bb9bd380a25', 'Zombie', '1994-01-01', '00:05:06', '550e8400-e29b-41d4-a716-446655440001', '2a9eebc9-9c0b-4ef8-bb6d-6bb9bd380a23', 'src/main/java/org/uninpahu/Music/Zombie.mp3');
+
+INSERT INTO Songs (idSong, nameSong, creationSong, durationSong, idGender, idAlbum, pathFile) 
+VALUES ('5d2eebc9-9c0b-4ef8-bb6d-6bb9bd380a26', 'Who Loves the Sun', '1970-01-01', '00:02:38', '550e8400-e29b-41d4-a716-446655440012', NULL, 'src/main/java/org/uninpahu/Music/Who love the sun.mp3');
+
+INSERT INTO Songs (idSong, nameSong, creationSong, durationSong, idGender, idAlbum, pathFile) 
+VALUES ('6e3ffc99-9c0b-4ef8-bb6d-6bb9bd380a27', 'Hombre Lobo en París', '1984-01-01', '00:03:53', '550e8400-e29b-41d4-a716-446655440010', '3b0ffc99-9c0b-4ef8-bb6d-6bb9bd380a24', 'src/main/java/org/uninpahu/Music/hombre lobo en Paris.mp3');
+
+INSERT INTO Songs (idSong, nameSong, creationSong, durationSong, idGender, idAlbum, pathFile) 
+VALUES ('d3a7b8c2-4e5f-11ee-be56-0242ac120002', 'Psycho (Acoustic)', '2021-10-05', '00:03:06', '550e8400-e29b-41d4-a716-446655440000', NULL, 'src/main/java/org/uninpahu/Music/Psycho (Acoustic).mp3');
+
 -- Relación de artistas y canciones
 INSERT INTO SongArtists (idSong, idUser, assignmentDate) VALUES
                                                              ('4c1ddbc9-9c0b-4ef8-bb6d-6bb9bd380a25', '9d6eebc9-9c0b-4ef8-bb6d-6bb9bd380a20', '1994-01-01'), -- Dolores - Zombie

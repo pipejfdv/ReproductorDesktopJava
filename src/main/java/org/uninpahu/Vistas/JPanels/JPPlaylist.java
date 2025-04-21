@@ -131,7 +131,6 @@ public class JPPlaylist extends javax.swing.JPanel {
         if(row >= 0){
             String selectedSong = jTablePlaylist.getValueAt(row, 0).toString();
             Song song = controlerSong.searchSong(null, selectedSong);
-            System.out.println("info: " + song.getPathFile());
             mediaPlayer.play(song.getPathFile());
         }
     }//GEN-LAST:event_jBPlaySongActionPerformed
