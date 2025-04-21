@@ -1,12 +1,10 @@
 package org.uninpahu.Vistas.JPanels;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.util.Optional;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import org.uninpahu.Controlers.ControlerUser;
 import org.uninpahu.Modelo.User;
+import org.uninpahu.Services.Session;
 import org.uninpahu.Vistas.JFrames.JFHome;
 import org.uninpahu.Vistas.JFrames.JFIndex;
 
@@ -27,6 +25,7 @@ public class JPIndexAuth extends javax.swing.JPanel {
         if (userAuth.isPresent()) {
             User user = userAuth.get();
             if (user.getNickname().equals(nickname) && user.getPassword().equals(password)) {
+                Session.setNickname(user.getNickname());
                 return true;
             }
         }

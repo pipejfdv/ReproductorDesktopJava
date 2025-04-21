@@ -6,7 +6,7 @@ import org.uninpahu.Vistas.JFrames.JFIndex;
 public class App 
 {
     public static void main( String[] args )
-    {          
+    {                  
         JFIndex index = new JFIndex();
         index.setVisible(true);
         index.setLocationRelativeTo(null);

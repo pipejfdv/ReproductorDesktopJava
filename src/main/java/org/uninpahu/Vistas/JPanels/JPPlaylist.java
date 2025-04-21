@@ -14,6 +14,7 @@ public class JPPlaylist extends javax.swing.JPanel {
     DefaultTableModel dtm = new DefaultTableModel();
     ControlerSong controlerSong = new ControlerSong();
     Reproductor reproductor = new Reproductor();
+    String selectedSong = null;
     
     public JPPlaylist() {
         initComponents();
@@ -34,7 +35,7 @@ public class JPPlaylist extends javax.swing.JPanel {
             }));
         });
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -165,7 +166,7 @@ public class JPPlaylist extends javax.swing.JPanel {
     private void jBPlaySongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlaySongActionPerformed
         int row = jTablePlaylist.getSelectedRow();
         if(row >= 0){
-            String selectedSong = jTablePlaylist.getValueAt(row, 0).toString();
+            selectedSong = jTablePlaylist.getValueAt(row, 0).toString();
             Song song = controlerSong.searchSong(null, selectedSong);
             reproductor.play(song.getPathFile());
         }
@@ -186,6 +187,11 @@ public class JPPlaylist extends javax.swing.JPanel {
 
     private void jBAddSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddSongActionPerformed
         JFInformation information = new JFInformation();
+        int row = jTablePlaylist.getSelectedRow();
+        if(row >= 0){
+            information.setSongSelect(selectedSong = jTablePlaylist.getValueAt(row, 0).toString());
+        }
+        //information.setUndecorated(true);
         information.setVisible(true);
         information.setLocationRelativeTo(null);
         information.setResizable(false);

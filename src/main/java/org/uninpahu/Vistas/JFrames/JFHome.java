@@ -7,8 +7,9 @@ import javafx.embed.swing.JFXPanel;
 import org.uninpahu.Vistas.JPanels.JPAlbums;
 
 public class JFHome extends javax.swing.JFrame {
-
+    
     public JFHome() {
+        this.setUndecorated(true);
         initComponents();
         new JFXPanel();
         JPPlaylist playlistPanel = new JPPlaylist();
@@ -20,7 +21,7 @@ public class JFHome extends javax.swing.JFrame {
         jPanelContentHome.revalidate();
         jPanelContentHome.repaint();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
