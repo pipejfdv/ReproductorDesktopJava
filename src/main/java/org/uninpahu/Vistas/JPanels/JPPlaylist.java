@@ -4,14 +4,16 @@ package org.uninpahu.Vistas.JPanels;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.table.DefaultTableModel;
-import org.uninpahu.ConfigPlayer.mediaPlayer;
+import org.uninpahu.ConfigPlayer.Reproductor;
 import org.uninpahu.Controlers.ControlerSong;
 import org.uninpahu.Modelo.Song;
+import org.uninpahu.Vistas.JFrames.JFInformation;
 
 public class JPPlaylist extends javax.swing.JPanel {
 
     DefaultTableModel dtm = new DefaultTableModel();
     ControlerSong controlerSong = new ControlerSong();
+    Reproductor reproductor = new Reproductor();
     
     public JPPlaylist() {
         initComponents();
@@ -48,6 +50,8 @@ public class JPPlaylist extends javax.swing.JPanel {
         jBPlaySong = new javax.swing.JButton();
         jBAddSong = new javax.swing.JButton();
         jBComment = new javax.swing.JButton();
+        jBPlaySong2 = new javax.swing.JButton();
+        jTogglePause = new javax.swing.JToggleButton();
 
         setPreferredSize(new java.awt.Dimension(500, 411));
 
@@ -83,10 +87,31 @@ public class JPPlaylist extends javax.swing.JPanel {
         });
 
         jBAddSong.setIcon(new javax.swing.ImageIcon("/home/pipejfdv/Desktop/programs/SpotifyDesktop/src/main/java/org/uninpahu/Vistas/Images/anadir.png")); // NOI18N
-        jBAddSong.setText("  Add Song");
+        jBAddSong.setText("  Add Song to favorite");
+        jBAddSong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAddSongActionPerformed(evt);
+            }
+        });
 
-        jBComment.setIcon(new javax.swing.ImageIcon("/home/pipejfdv/Desktop/programs/SpotifyDesktop/src/main/java/org/uninpahu/Vistas/Images/bueno.png")); // NOI18N
+        jBComment.setIcon(new javax.swing.ImageIcon("/home/pipejfdv/Desktop/programs/SpotifyDesktop/src/main/java/org/uninpahu/Vistas/Images/comment.png")); // NOI18N
         jBComment.setText("  Comment");
+
+        jBPlaySong2.setIcon(new javax.swing.ImageIcon("/home/pipejfdv/Desktop/programs/SpotifyDesktop/src/main/java/org/uninpahu/Vistas/Images/stop-button.png")); // NOI18N
+        jBPlaySong2.setText("  Stop");
+        jBPlaySong2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPlaySong2ActionPerformed(evt);
+            }
+        });
+
+        jTogglePause.setIcon(new javax.swing.ImageIcon("/home/pipejfdv/Desktop/programs/SpotifyDesktop/src/main/java/org/uninpahu/Vistas/Images/pause-button.png")); // NOI18N
+        jTogglePause.setText("  Pause");
+        jTogglePause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTogglePauseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,24 +119,35 @@ public class JPPlaylist extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(jBComment)
+                .addGap(48, 48, 48)
+                .addComponent(jBAddSong)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jBPlaySong)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBAddSong)
-                .addGap(54, 54, 54)
-                .addComponent(jBComment)
-                .addGap(23, 23, 23))
+                .addComponent(jTogglePause)
+                .addGap(65, 65, 65)
+                .addComponent(jBPlaySong2)
+                .addGap(50, 50, 50))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBPlaySong)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBPlaySong2)
+                        .addComponent(jTogglePause)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBAddSong)
                     .addComponent(jBComment))
-                .addGap(0, 70, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -131,17 +167,39 @@ public class JPPlaylist extends javax.swing.JPanel {
         if(row >= 0){
             String selectedSong = jTablePlaylist.getValueAt(row, 0).toString();
             Song song = controlerSong.searchSong(null, selectedSong);
-            mediaPlayer.play(song.getPathFile());
+            reproductor.play(song.getPathFile());
         }
     }//GEN-LAST:event_jBPlaySongActionPerformed
+
+    private void jBPlaySong2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlaySong2ActionPerformed
+        reproductor.stopSong();
+    }//GEN-LAST:event_jBPlaySong2ActionPerformed
+
+    private void jTogglePauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTogglePauseActionPerformed
+        if(jTogglePause.isSelected()){
+            reproductor.pauseSong();
+        }
+        else{
+            reproductor.resumeSong();
+        }
+    }//GEN-LAST:event_jTogglePauseActionPerformed
+
+    private void jBAddSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddSongActionPerformed
+        JFInformation information = new JFInformation();
+        information.setVisible(true);
+        information.setLocationRelativeTo(null);
+        information.setResizable(false);
+    }//GEN-LAST:event_jBAddSongActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAddSong;
     private javax.swing.JButton jBComment;
     private javax.swing.JButton jBPlaySong;
+    private javax.swing.JButton jBPlaySong2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePlaylist;
+    private javax.swing.JToggleButton jTogglePause;
     // End of variables declaration//GEN-END:variables
 }

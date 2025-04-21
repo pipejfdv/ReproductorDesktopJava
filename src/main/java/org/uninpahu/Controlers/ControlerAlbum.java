@@ -1,6 +1,7 @@
 
 package org.uninpahu.Controlers;
 
+import java.util.List;
 import org.uninpahu.Modelo.Album;
 import org.uninpahu.Repository.AlbumDAO;
 import org.uninpahu.Repository.RepositoryAlbum;
@@ -16,5 +17,9 @@ public class ControlerAlbum {
     
     public Album searchAlbum(String idAlbum, String nameAlbum){
         return servicesAlbum.searchAlbum(idAlbum, nameAlbum);
+    }
+    
+    public List<Album> listAlbums(){
+        return servicesAlbum.listAlbums();
     }
 }
