@@ -98,6 +98,11 @@ public class JPSettings extends javax.swing.JPanel {
         jToggleButton3.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton3.setText("Delete account");
         jToggleButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel7.setText("Password");
@@ -194,9 +199,20 @@ public class JPSettings extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Correct update 😎");
         }
         else{
-            JOptionPane.showMessageDialog(null, "Error update 😎");
+            JOptionPane.showMessageDialog(null, "Error update");
         }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        String rs = JOptionPane.showInputDialog("Are you sure to delete account? \nWrite Y = sure another = not");
+        if(rs.equalsIgnoreCase("y")){
+            controlerPerson.deletePerson(user.getIdPerson().getIdPerson());
+            System.exit(0);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error delete account");
+        }
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

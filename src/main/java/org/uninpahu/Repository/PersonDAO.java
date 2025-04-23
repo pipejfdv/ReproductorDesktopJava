@@ -4,9 +4,7 @@ package org.uninpahu.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import org.uninpahu.DB.DataBase;
 import org.uninpahu.Modelo.Person;
 
@@ -73,6 +71,19 @@ public class PersonDAO implements RepositoryPerson{
         }
         catch(SQLException e){
             System.err.println("update Person: "+e.getMessage());
+        }
+    }
+
+    @Override
+    public void removePerson(String idPerson) {
+        Connection conex = DataBase.getConnection();
+        String sql = "DELETE FROM Persons WHERE idPerson = ?";
+        try(PreparedStatement stm = conex.prepareCall(sql)){
+            stm.setString(1, idPerson);
+            stm.executeUpdate();
+        }
+        catch(SQLException e){
+            System.err.println("Delete Person: "+e.getMessage());
         }
     }
     

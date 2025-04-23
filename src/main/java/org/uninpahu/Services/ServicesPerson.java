@@ -22,4 +22,8 @@ public class ServicesPerson {
     public void updatePerson(String names, String lastnames, String email, String idPerson){
         repositoryPerson.updatePerson(names, lastnames, email, idPerson);
     }
+    
+    public void deletePerson(String idPerson){
+        repositoryPerson.removePerson(idPerson);
+    }
 }

@@ -10,4 +10,6 @@ public interface RepositoryPerson {
     Person searchByEmail(String email);
     //update data
     void updatePerson(String names, String lastnames, String email, String idPerson);
+    //delete person
+    void removePerson(String idPerson);
 }

@@ -25,4 +25,8 @@ public class ControlerPerson {
     public void updatePerson(String names, String lastnames, String email, String idPerson){
         servicesPerson.updatePerson(names, lastnames, email, idPerson);
     }
+    
+    public void deletePerson(String idPerson){
+        servicesPerson.deletePerson(idPerson);
+    }
 }
