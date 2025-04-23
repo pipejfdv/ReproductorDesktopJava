@@ -21,4 +21,8 @@ public class ControlerPerson {
     public Person emailSearch(String email){
         return servicesPerson.searhByEmail(email);
     }
+    
+    public void updatePerson(String names, String lastnames, String email, String idPerson){
+        servicesPerson.updatePerson(names, lastnames, email, idPerson);
+    }
 }

@@ -87,6 +87,22 @@ public class UserDAO implements RepositoryUser{
         }
         return user;
     }
+
+    @Override
+    public void updateUser(String nickname, String password, String idUser) {
+        Connection conex = DataBase.getConnection();
+        String sql = "UPDATE Users SET nickname = ?, passwordUser = ? WHERE idUser = ?";
+        try(PreparedStatement stm = conex.prepareStatement(sql)){
+            stm.setString(1, nickname);
+            stm.setString(2, password);
+            stm.setString(3, idUser);
+            stm.executeUpdate();
+        }
+        catch(SQLException e){
+            System.err.println("Update User: "+e.getMessage());
+        }
+        
+    }
     
     
     

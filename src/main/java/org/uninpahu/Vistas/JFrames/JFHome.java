@@ -7,6 +7,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.MediaPlayer;
 import org.uninpahu.ConfigPlayer.Reproductor;
 import org.uninpahu.Vistas.JPanels.JPAlbums;
+import org.uninpahu.Vistas.JPanels.JPSettings;
 
 public class JFHome extends javax.swing.JFrame {
     
@@ -203,7 +204,14 @@ public class JFHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        JPSettings settingsPanel = new JPSettings();
+        settingsPanel.setSize(500, 411);
+        settingsPanel.setLocation(0,0);
+        
+        jPanelContentHome.removeAll();
+        jPanelContentHome.add(settingsPanel, BorderLayout.CENTER);
+        jPanelContentHome.revalidate();
+        jPanelContentHome.repaint();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

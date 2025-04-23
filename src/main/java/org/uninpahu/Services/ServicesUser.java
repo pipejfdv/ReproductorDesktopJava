@@ -21,4 +21,8 @@ public class ServicesUser {
     public User searhByNickname(String nickname){
         return repositoryUser.searhByNickname(nickname);
     }
+    
+    public void updateUser(String nickname, String password, String idUser){
+        repositoryUser.updateUser(nickname, password, idUser);
+    }
 }

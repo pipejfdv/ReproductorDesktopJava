@@ -18,4 +18,8 @@ public class ServicesPerson {
     public Person searhByEmail (String email){
         return repositoryPerson.searchByEmail(email);
     }
+    
+    public void updatePerson(String names, String lastnames, String email, String idPerson){
+        repositoryPerson.updatePerson(names, lastnames, email, idPerson);
+    }
 }

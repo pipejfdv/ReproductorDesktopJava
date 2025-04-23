@@ -22,4 +22,8 @@ public class ControlerUser {
     public User searchByNickname(String nickname){
         return servicesUser.searhByNickname(nickname);
     }
+    
+    public void updateUser(String nickname, String password, String idUser){
+        servicesUser.updateUser(nickname, password, idUser);
+    }
 }

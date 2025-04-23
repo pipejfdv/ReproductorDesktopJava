@@ -59,5 +59,21 @@ public class PersonDAO implements RepositoryPerson{
         }
         return person;
     }
+
+    @Override
+    public void updatePerson(String names, String lastnames, String email, String idPerson) {
+        Connection conex = DataBase.getConnection();
+        String sql = "UPDATE Persons SET names = ?, lastnames = ?, email = ? WHERE idPerson = ?";
+        try(PreparedStatement stm = conex.prepareStatement(sql)){
+            stm.setString(1, names);
+            stm.setString(2, lastnames);
+            stm.setString(3, email);
+            stm.setString(4, idPerson);
+            stm.executeUpdate();
+        }
+        catch(SQLException e){
+            System.err.println("update Person: "+e.getMessage());
+        }
+    }
     
 }

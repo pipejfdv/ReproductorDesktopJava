@@ -8,4 +8,6 @@ public interface RepositoryPerson {
     void insertPerson(Person person);
     //searh by email
     Person searchByEmail(String email);
+    //update data
+    void updatePerson(String names, String lastnames, String email, String idPerson);
 }
