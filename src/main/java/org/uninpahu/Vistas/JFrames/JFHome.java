@@ -4,9 +4,13 @@ package org.uninpahu.Vistas.JFrames;
 import java.awt.BorderLayout;
 import org.uninpahu.Vistas.JPanels.JPPlaylist;
 import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.MediaPlayer;
+import org.uninpahu.ConfigPlayer.Reproductor;
 import org.uninpahu.Vistas.JPanels.JPAlbums;
 
 public class JFHome extends javax.swing.JFrame {
+    
+    Reproductor reproductor = new Reproductor();
     
     public JFHome() {
         this.setUndecorated(true);
@@ -190,6 +194,7 @@ public class JFHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        reproductor.stopExit();
         JFIndex index = new JFIndex();
         index.setVisible(true);
         index.setLocationRelativeTo(null);

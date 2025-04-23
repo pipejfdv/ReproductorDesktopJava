@@ -98,6 +98,9 @@ public class SongDAO implements RepositorySong {
         catch(SQLException e){
             System.err.println("Error search song "+e.getMessage());
         }
+        finally{
+            DataBase.closeConnection(conex);
+        }
         return song;
     }
 }

@@ -32,7 +32,7 @@ public class JPAlbums extends javax.swing.JPanel {
         }
     }
     
-    public void addDataTableAlbums(){
+    public void addDataTableAlbums(String tituloAlbum){
         dtm.setRowCount(0);
         Optional<List<Song>> songsList = controlerSong.listSong();
         songsList.ifPresent(songs -> {
@@ -95,6 +95,12 @@ public class JPAlbums extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel1.setText("Albums");
+
+        BoxAlbums.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoxAlbumsActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel2.setText("select your album");
@@ -221,8 +227,12 @@ public class JPAlbums extends javax.swing.JPanel {
 
     private void jBCheckAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCheckAlbumActionPerformed
         tituloAlbum = (String) BoxAlbums.getSelectedItem();
-        addDataTableAlbums();
+        addDataTableAlbums(tituloAlbum);
     }//GEN-LAST:event_jBCheckAlbumActionPerformed
+
+    private void BoxAlbumsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxAlbumsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BoxAlbumsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

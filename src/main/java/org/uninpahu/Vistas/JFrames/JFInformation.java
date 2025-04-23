@@ -1,20 +1,27 @@
-
 package org.uninpahu.Vistas.JFrames;
 
+import java.util.List;
+import java.util.Optional;
+import javax.swing.JOptionPane;
+import org.uninpahu.Controlers.ControlerPlaylist;
+import org.uninpahu.Modelo.Playlist;
 
 public class JFInformation extends javax.swing.JFrame {
 
-    String selectedSong;
     JFCreatePlaylist createPlaylist = new JFCreatePlaylist();
-    
+
+    ControlerPlaylist controlerPlaylist = new ControlerPlaylist();
+
+    String selectedSong;
+
     public JFInformation() {
         this.setUndecorated(true);
         initComponents();
     }
-    
-    public void setSongSelect(String selectedSong){
+
+    public void setSongSelect(String selectedSong) {
         this.selectedSong = selectedSong;
-        labelJFInformation.setText(selectedSong+"?");
+        labelJFInformation.setText(selectedSong + "?");
     }
 
     @SuppressWarnings("unchecked")
@@ -125,10 +132,17 @@ public class JFInformation extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-        JFAddSongPlaylist addSongAlbum = new JFAddSongPlaylist();
-        addSongAlbum.setVisible(true);
-        addSongAlbum.setLocationRelativeTo(null);
+        Optional<List<Playlist>> listPlaylist = controlerPlaylist.listsOfPlaylist();
+        if (listPlaylist.isPresent() && !listPlaylist.get().isEmpty()) {
+            JFAddSongPlaylist addSongAlbum = new JFAddSongPlaylist();
+            addSongAlbum.songAddPlaylistSelected(selectedSong);
+            addSongAlbum.setVisible(true);
+            addSongAlbum.setLocationRelativeTo(null);
+            this.setVisible(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Playlist does not exits\nCreate your playlist");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

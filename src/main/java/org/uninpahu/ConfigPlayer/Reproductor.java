@@ -8,7 +8,7 @@ import javafx.util.Duration;
 
 
 public class Reproductor {
-    private static MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
     private Duration pauseTime = Duration.ZERO;
             
     public Reproductor(){}
@@ -43,5 +43,11 @@ public class Reproductor {
     
     public void stopSong(){
         mediaPlayer.stop();
+    }
+    
+    public void stopExit(){
+        if(mediaPlayer != null){
+            mediaPlayer.stop();
+        }
     }
 }

@@ -1,8 +1,8 @@
-
 package org.uninpahu.Vistas.JPanels;
 
 import java.util.List;
 import java.util.Optional;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.uninpahu.ConfigPlayer.Reproductor;
 import org.uninpahu.Controlers.ControlerSong;
@@ -15,7 +15,7 @@ public class JPPlaylist extends javax.swing.JPanel {
     ControlerSong controlerSong = new ControlerSong();
     Reproductor reproductor = new Reproductor();
     String selectedSong = null;
-    
+
     public JPPlaylist() {
         initComponents();
         String[] tittle = new String[]{"Title", "Album", "Duration", "Gender"};
@@ -23,8 +23,8 @@ public class JPPlaylist extends javax.swing.JPanel {
         jTablePlaylist.setModel(dtm);
         addDataTableSongs();
     }
-    
-    private void addDataTableSongs(){
+
+    private void addDataTableSongs() {
         Optional<List<Song>> songslist = controlerSong.listSong();
         songslist.ifPresent(songs -> {
             songs.forEach(songIterator -> dtm.addRow(new Object[]{
@@ -35,7 +35,7 @@ public class JPPlaylist extends javax.swing.JPanel {
             }));
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -165,7 +165,7 @@ public class JPPlaylist extends javax.swing.JPanel {
 
     private void jBPlaySongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlaySongActionPerformed
         int row = jTablePlaylist.getSelectedRow();
-        if(row >= 0){
+        if (row >= 0) {
             selectedSong = jTablePlaylist.getValueAt(row, 0).toString();
             Song song = controlerSong.searchSong(null, selectedSong);
             reproductor.play(song.getPathFile());
@@ -177,24 +177,25 @@ public class JPPlaylist extends javax.swing.JPanel {
     }//GEN-LAST:event_jBPlaySong2ActionPerformed
 
     private void jTogglePauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTogglePauseActionPerformed
-        if(jTogglePause.isSelected()){
+        if (jTogglePause.isSelected()) {
             reproductor.pauseSong();
-        }
-        else{
+        } else {
             reproductor.resumeSong();
         }
     }//GEN-LAST:event_jTogglePauseActionPerformed
 
     private void jBAddSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddSongActionPerformed
-        JFInformation information = new JFInformation();
+
         int row = jTablePlaylist.getSelectedRow();
-        if(row >= 0){
+        if (row >= 0) {
+            JFInformation information = new JFInformation();
             information.setSongSelect(selectedSong = jTablePlaylist.getValueAt(row, 0).toString());
+            information.setVisible(true);
+            information.setLocationRelativeTo(null);
+            information.setResizable(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Select a song first");
         }
-        //information.setUndecorated(true);
-        information.setVisible(true);
-        information.setLocationRelativeTo(null);
-        information.setResizable(false);
     }//GEN-LAST:event_jBAddSongActionPerformed
 
 

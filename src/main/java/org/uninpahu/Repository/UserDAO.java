@@ -8,8 +8,6 @@ import org.uninpahu.Modelo.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import org.uninpahu.Controlers.ControlerPerson;
-import org.uninpahu.Controlers.ControlerRol;
 import org.uninpahu.Modelo.Person;
 import org.uninpahu.Modelo.Rol;
 

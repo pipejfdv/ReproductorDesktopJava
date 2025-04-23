@@ -1,5 +1,7 @@
 package org.uninpahu.Controlers;
 
+import java.util.List;
+import java.util.Optional;
 import jdk.jfr.internal.Repository;
 import org.uninpahu.Modelo.Playlist;
 import org.uninpahu.Repository.PlaylistDAO;
@@ -17,5 +19,13 @@ public class ControlerPlaylist {
     
     public void inserPlaylist(Playlist playlist){
         servicesPlaylist.insertPlaylist(playlist);
+    }
+    
+    public Optional<List<Playlist>> listsOfPlaylist(){
+        return servicesPlaylist.listOfPlaylists();
+    }
+    
+    public Playlist searchPlaylist(String idPlaylist, String namePlaylist){
+        return servicesPlaylist.searchPlaylists(idPlaylist, namePlaylist);
     }
 }

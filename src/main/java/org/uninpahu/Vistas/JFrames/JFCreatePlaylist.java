@@ -1,6 +1,7 @@
 package org.uninpahu.Vistas.JFrames;
 
 import java.util.UUID;
+import javax.swing.JOptionPane;
 import org.uninpahu.Controlers.ControlerPlaylist;
 import org.uninpahu.Controlers.ControlerPlaylistSongs;
 import org.uninpahu.Controlers.ControlerSong;
@@ -18,7 +19,7 @@ public class JFCreatePlaylist extends javax.swing.JFrame {
     ControlerPlaylistSongs controlerPlaylistSongs = new ControlerPlaylistSongs();
     ControlerSong controlerSong = new ControlerSong();
     
-    String selectedSong = null;
+    String selectedSong;
     
     public JFCreatePlaylist() {
         this.setUndecorated(true);
@@ -27,6 +28,7 @@ public class JFCreatePlaylist extends javax.swing.JFrame {
     
     public void albumsongselection(String songSelected){
         this.selectedSong = songSelected;
+        jLSong.setText(selectedSong);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,7 +41,7 @@ public class JFCreatePlaylist extends javax.swing.JFrame {
         jTNamePlaylist = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         label2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLSong = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,7 +69,7 @@ public class JFCreatePlaylist extends javax.swing.JFrame {
         label2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         label2.setText("the previously selected song will be added");
 
-        jLabel1.setText("Song");
+        jLSong.setText("Song");
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +89,7 @@ public class JFCreatePlaylist extends javax.swing.JFrame {
                         .addComponent(label))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addComponent(jLabel1))
+                        .addComponent(jLSong))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -116,7 +118,7 @@ public class JFCreatePlaylist extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(label2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(jLSong)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,6 +147,8 @@ public class JFCreatePlaylist extends javax.swing.JFrame {
         controlerPlaylist.inserPlaylist(playlist);
         Song song = controlerSong.searchSong(null, selectedSong);
         controlerPlaylistSongs.insertSongToPlaylist(id, song.getIdSong());
+        this.setVisible(false);
+        JOptionPane.showMessageDialog(null, "Playlist created and song added");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTNamePlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNamePlaylistActionPerformed
@@ -158,7 +162,7 @@ public class JFCreatePlaylist extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLSong;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTNamePlaylist;
     private javax.swing.JLabel label;
