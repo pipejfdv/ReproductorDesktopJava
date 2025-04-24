@@ -6,6 +6,7 @@ import org.uninpahu.Vistas.JPanels.JPPlaylist;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.MediaPlayer;
 import org.uninpahu.ConfigPlayer.Reproductor;
+import org.uninpahu.ConfigPlayer.saveSong;
 import org.uninpahu.Vistas.JPanels.JPAlbums;
 import org.uninpahu.Vistas.JPanels.JPSettings;
 
@@ -215,7 +216,10 @@ public class JFHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        JFNewSong fNewSong = new JFNewSong();
+        fNewSong.setSize(512, 396);
+        fNewSong.setLocationRelativeTo(null);
+        fNewSong.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

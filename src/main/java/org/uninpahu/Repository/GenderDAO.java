@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import org.uninpahu.DB.DataBase;
 import org.uninpahu.Modelo.Gender;
 
@@ -37,6 +39,31 @@ public class GenderDAO implements RepositoryGender{
             DataBase.closeConnection(conex);
         }
         return gender;
+    }
+
+    @Override
+    public List<Gender> listGenders() {
+        Connection conex = DataBase.getConnection();
+        String sql = "SELECT * FROM Genders";
+        List<Gender> listGender = new ArrayList<>();
+        try(PreparedStatement stm = conex.prepareStatement(sql)){
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                listGender.add(
+                        new Gender(
+                                rs.getString("idGender"), 
+                                rs.getString("nameGender")
+                        )
+                );
+            }
+        }
+        catch(SQLException e){
+            System.err.println("Albums not loaded"+ e.getMessage());
+        }
+        finally{
+            DataBase.closeConnection(conex);
+        }
+        return listGender;
     }
     
 }

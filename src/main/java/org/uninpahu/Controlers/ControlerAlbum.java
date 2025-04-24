@@ -22,4 +22,8 @@ public class ControlerAlbum {
     public List<Album> listAlbums(){
         return servicesAlbum.listAlbums();
     }
+    
+    public void createAlbum(Album album){
+        servicesAlbum.createAlbum(album);
+    }
 }

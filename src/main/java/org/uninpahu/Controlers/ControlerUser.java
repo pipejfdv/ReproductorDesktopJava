@@ -26,4 +26,8 @@ public class ControlerUser {
     public void updateUser(String nickname, String password, String idUser){
         servicesUser.updateUser(nickname, password, idUser);
     }
+    
+    public void removeUser(String idUser){
+        servicesUser.removeUser(idUser);
+    }
 }

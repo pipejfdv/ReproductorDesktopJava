@@ -10,4 +10,6 @@ public interface RepositoryAlbum {
     Album typeAlbum(String idAlbum, String nameAlbum);
     //list of albums
     List<Album> albumsList();
+    //create album
+    void createAlbum(Album album);
 }

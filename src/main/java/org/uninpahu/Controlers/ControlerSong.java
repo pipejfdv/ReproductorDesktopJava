@@ -24,4 +24,8 @@ public class ControlerSong {
     public Song searchSong(String idSong, String nameSong){
         return servicesSong.searchSong(idSong, nameSong);
     }
+    
+    public void insertSong(Song song){
+        servicesSong.creatSong(song);
+    }
 }

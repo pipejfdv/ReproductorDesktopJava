@@ -2,6 +2,7 @@
 package org.uninpahu.ConfigPlayer;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -26,7 +27,7 @@ public class saveSong {
                 Files.copy(selectFile.toPath(), destino, StandardCopyOption.REPLACE_EXISTING);
                 return destino.toString();
             }
-            catch(Exception e){
+            catch(IOException e){
                 JOptionPane.showMessageDialog(null, "Error to upload file: "+e.getMessage());
             }
         }

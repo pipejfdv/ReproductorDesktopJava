@@ -18,5 +18,9 @@ public class ServicesAlbum {
     
     public List<Album> listAlbums(){
         return repositoryAlbum.albumsList();
-    };
+    }
+    
+    public void createAlbum(Album album){
+        repositoryAlbum.createAlbum(album);
+    }
 }

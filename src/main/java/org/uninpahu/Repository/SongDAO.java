@@ -12,10 +12,16 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+import javax.swing.JOptionPane;
 import org.uninpahu.Controlers.ControlerAlbum;
 import org.uninpahu.Controlers.ControlerGender;
 import org.uninpahu.DB.DataBase;
+import org.uninpahu.Modelo.Album;
+import org.uninpahu.Modelo.Gender;
 import org.uninpahu.Modelo.Song;
+import org.uninpahu.Services.DurationToTime;
+import org.uninpahu.Services.TimeToDuration;
 
 public class SongDAO implements RepositorySong {
 
@@ -34,7 +40,7 @@ public class SongDAO implements RepositorySong {
             while (rs.next()) {
                 Date creationDateDb = rs.getDate("creationSong");
                 LocalDate creationDate = creationDateDb != null ? creationDateDb.toLocalDate() : null;
-                Duration duration = convertSqlTimeToDuration(rs.getTime("durationSong"));
+                Duration duration = TimeToDuration.convertSqlTimeToDuration(rs.getTime("durationSong"));
                 Song song = new Song(rs.getString("idSong"),
                         rs.getString("nameSong"),
                         creationDate,
@@ -53,20 +59,6 @@ public class SongDAO implements RepositorySong {
         }
     }
 
-    // Método para convertir java.sql.Time a Duration
-    private Duration convertSqlTimeToDuration(Time time) {
-        if (time == null) {
-            return Duration.ZERO;
-        }
-
-        // Convertir el Time a LocalTime
-        LocalTime localTime = time.toLocalTime();
-
-        // Crear Duration a partir de las horas, minutos y segundos
-        return Duration.ofHours(localTime.getHour())
-                .plusMinutes(localTime.getMinute())
-                .plusSeconds(localTime.getSecond());
-    }
 
     @Override
     public Song searchSong(String idSong, String nameSong) {
@@ -84,7 +76,7 @@ public class SongDAO implements RepositorySong {
             if(rs.next()){
                 Date creationDateDb = rs.getDate("creationSong");
                 LocalDate creationDate = creationDateDb != null ? creationDateDb.toLocalDate() : null;
-                Duration duration = convertSqlTimeToDuration(rs.getTime("durationSong"));
+                Duration duration = TimeToDuration.convertSqlTimeToDuration(rs.getTime("durationSong"));
                 song = new Song(
                         rs.getString("idSong"),
                         rs.getString("nameSong"),
@@ -102,5 +94,38 @@ public class SongDAO implements RepositorySong {
             DataBase.closeConnection(conex);
         }
         return song;
+    }
+
+    @Override
+    public void createSong(Song newSong) {
+        Connection conex = DataBase.getConnection();
+        String sql = "INSERT INTO Songs (idSong, nameSong, creationSong, durationSong, idGender, idAlbum, pathFile) VALUES (?,?,?,?,?,?,?)";
+        Song existSong = searchSong(null, newSong.getNameSong());
+        if(existSong == null || !newSong.getNameSong().equals(existSong.getNameSong())){
+            try(PreparedStatement stm = conex.prepareStatement(sql)){
+                stm.setString(1, newSong.getIdSong());
+                stm.setString(2, newSong.getNameSong());
+                Date creationDateSong = Date.valueOf(newSong.getCreationSong());
+                stm.setDate(3, creationDateSong);
+                Time duration = DurationToTime.convertirDuration(newSong.getDuration());
+                stm.setTime(4, duration);
+                Gender gender = controlerGender.searchGender(null, newSong.getIdGender().getNameGender());
+                stm.setString(5, gender.getIdGender());
+                Album album = controlerAlbum.searchAlbum(null, newSong.getIdAlbum().getNameAlbum());
+                stm.setString(6, album.getIdAlbum());
+                stm.setString(7, newSong.getPathFile());
+                stm.executeUpdate();
+            }
+            catch(SQLException e){
+                System.err.println("Error to create Song "+e.getMessage());
+            }
+            finally{
+                DataBase.closeConnection(conex);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "The name of the cation already exists");
+        }
+        
     }
 }

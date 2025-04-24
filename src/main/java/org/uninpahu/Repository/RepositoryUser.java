@@ -10,4 +10,6 @@ public interface RepositoryUser {
     User searhByNickname(String nickname);
     //update user
     void updateUser(String nickname, String password, String idUser);
+    //delete User
+    void removeUser(String IdUser);
 }

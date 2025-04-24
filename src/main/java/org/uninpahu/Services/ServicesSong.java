@@ -21,4 +21,8 @@ public class ServicesSong {
     public Song searchSong(String idSong, String nameSong){
         return repositorySong.searchSong(idSong, nameSong);
     }
+    
+    public void creatSong(Song song) {
+        repositorySong.createSong(song);
+    }
 }

@@ -25,4 +25,8 @@ public class ServicesUser {
     public void updateUser(String nickname, String password, String idUser){
         repositoryUser.updateUser(nickname, password, idUser);
     }
+    
+    public void removeUser(String idUser){
+        repositoryUser.removeUser(idUser);
+    }
 }

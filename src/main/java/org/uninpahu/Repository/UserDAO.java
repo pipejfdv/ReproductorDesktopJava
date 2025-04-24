@@ -103,7 +103,17 @@ public class UserDAO implements RepositoryUser{
         }
         
     }
-    
-    
-    
+
+    @Override
+    public void removeUser(String idUser) {
+        Connection conex = DataBase.getConnection();
+        String sql = "DELETE FROM Users WHERE idUser = ?";
+        try(PreparedStatement stm = conex.prepareCall(sql)){
+            stm.setString(1, idUser);
+            stm.executeUpdate();
+        }
+        catch(SQLException e){
+            System.err.println("Delete Person: "+e.getMessage());
+        }
+    }    
 }

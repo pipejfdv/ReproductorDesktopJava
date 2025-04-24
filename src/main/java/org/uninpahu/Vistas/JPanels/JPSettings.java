@@ -207,6 +207,7 @@ public class JPSettings extends javax.swing.JPanel {
         String rs = JOptionPane.showInputDialog("Are you sure to delete account? \nWrite Y = sure another = not");
         if(rs.equalsIgnoreCase("y")){
             controlerPerson.deletePerson(user.getIdPerson().getIdPerson());
+            controlerUser.removeUser(user.getIdUser());
             System.exit(0);
         }
         else{

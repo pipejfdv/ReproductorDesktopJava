@@ -8,9 +8,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import org.uninpahu.Controlers.ControlerGender;
 import org.uninpahu.DB.DataBase;
 import org.uninpahu.Modelo.Album;
+import org.uninpahu.Modelo.Gender;
 
 
 public class AlbumDAO implements RepositoryAlbum{
@@ -75,6 +77,27 @@ public class AlbumDAO implements RepositoryAlbum{
             DataBase.closeConnection(conex);
         }
         return listAlbum;
+    }
+
+    @Override
+    public void createAlbum(Album album) {
+        Connection conex = DataBase.getConnection();
+        String sql = "INSERT INTO Albums (idAlbum, nameAlbum, creationAlbum, idGenderAlbum) VALUES (?,?,?,?)";
+        
+        try(PreparedStatement smt = conex.prepareStatement(sql)){
+            smt.setString(1, album.getIdAlbum());
+            smt.setString(2, album.getNameAlbum());
+            Date creationAlbum = Date.valueOf(album.getCreateAlbum());
+            smt.setDate(3, creationAlbum);
+            smt.setString(4, album.getIdGender().getIdGender());
+            smt.executeUpdate();
+        }
+        catch(SQLException e){
+            System.err.println("Error to create Album "+e.getMessage());
+        }
+        finally{
+            DataBase.closeConnection(conex);
+        }
     }
     
     
